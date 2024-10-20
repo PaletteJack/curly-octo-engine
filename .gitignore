@@ -1,0 +1,7 @@
+venv/
+*.db
+*.sqlite
+*.env
+.env
+locals.py
+__pycache__

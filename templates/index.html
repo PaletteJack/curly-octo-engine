@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}School Data Query{% endblock %}
+
+{% block header %}School Data Query Tool{% endblock %}
+
+{% block content %}
+    <textarea id="query" rows="4" cols="50">SELECT "School name", "Location city" FROM school_data LIMIT 10</textarea>
+    <br>
+    <button onclick="runQuery()">Run Query</button>
+    <div id="results"></div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function runQuery() {
+    const query = document.getElementById('query').value;
+    axios.post('/query', { query: query })
+        .then(function (response) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<h2>Results:</h2>';
+            const table = document.createElement('table');
+            table.border = '1';
+            
+            // Create header row
+            const headerRow = table.insertRow();
+            for (const key in response.data[0]) {
+                const th = document.createElement('th');
+                th.textContent = key;
+                headerRow.appendChild(th);
+            }
+
+            // Create data rows
+            response.data.forEach(item => {
+                const row = table.insertRow();
+                for (const key in item) {
+                    const cell = row.insertCell();
+                    cell.textContent = item[key];
+                }
+            });
+
+            resultsDiv.appendChild(table);
+        })
+        .catch(function (error) {
+            console.error('Error:', error);
+            document.getElementById('results').innerHTML = 'Error: ' + error.message;
+        });
+}
+</script>
+{% endblock %}

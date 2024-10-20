@@ -1,0 +1,5 @@
+main website:
+https://nces.maps.arcgis.com/home/item.html?id=6a4fa1b0434e4688b5d60c2e5c1dcaaa&sortOrder=desc&sortField=defaultFSOrder#data
+
+api routes:
+https://nces.ed.gov/opengis/rest/services/K12_School_Locations/EDGE_ADMINDATA_PUBLICSCH_2223/MapServer/0/query?f=json&where=1%3D1&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=LSTATE%20ASC&resultOffset=0&resultRecordCount=50
