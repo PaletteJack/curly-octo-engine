@@ -4,29 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Explore Data{% endblock %}</title>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     {% block extra_head %}{% endblock %}
 </head>
 <body>
     <header>
         <h1>{% block header %}School Data Explorer{% endblock %}</h1>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <!-- Add more navigation items as needed -->
-            </ul>
-        </nav>
     </header>
 
     <main>
         {% block content %}
         {% endblock %}
     </main>
-
-    <footer>
-        <p>&copy; 2024 Your Company Name</p>
-    </footer>
 
     {% block scripts %}{% endblock %}
 </body>

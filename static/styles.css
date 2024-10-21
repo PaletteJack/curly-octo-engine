@@ -1,0 +1,15 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    display: grid;
+    height: 100dvh;
+    place-content: center;
+}
