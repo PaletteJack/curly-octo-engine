@@ -1,5 +1,5 @@
-from flask import Flask, request, jsonify, render_template, send_file
-import sqlite3
+from flask import Flask, request, render_template, send_file
+import sqlite3, json, io
 import pandas as pd
 
 app = Flask(__name__)
@@ -12,8 +12,11 @@ def export_csv():
     conn = sqlite3.connect('db.sqlite')
     df = pd.read_sql_query(query, conn)
     conn.close()
-    csv_file = df.to_csv('query_export.csv', index=False)
-    return send_file(csv_file, as_attachment=True, attachment_filename='query_export.csv', mimetype='text/csv')
+    buffer = io.StringIO()
+    df.to_csv(buffer, index=False)
+    buffer.seek(0)
+    bytes_output = io.BytesIO(buffer.getvalue().encode())
+    return send_file(bytes_output, as_attachment=True, download_name="export.csv", mimetype='text/csv')
 
 @app.route('/query', methods=["POST"])
 def run_query():
@@ -21,7 +24,7 @@ def run_query():
     conn = sqlite3.connect('db.sqlite')
     df = pd.read_sql_query(query, conn)
     conn.close()
-    return jsonify(df.to_dict(orient='records'))
+    return json.dumps(df.to_dict(orient='records'))
 
 @app.route("/", methods=["GET"])
 def home():

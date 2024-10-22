@@ -5,70 +5,20 @@
 {% block header %}School Data Query Tool{% endblock %}
 
 {% block content %}
-    <textarea id="query" rows="4" cols="50">SELECT school_name, location_city FROM school_data LIMIT 10</textarea>
+    <textarea id="query" rows="5" cols="80">SELECT school_name, location_city FROM school_data LIMIT 10</textarea>
     <br>
-    <button onclick="runQuery()">Run Query</button>
+    <div class="btn-group">
+        <button onclick="runQuery()">RUN QUERY</button>
+        <button onclick="exportQuery()">EXPORT QUERY</button>
+        {# <button onclick="openDialog()">SHOW HEADERS</button> #}
+    </div>
     <div id="results"></div>
+    <dialog>
+        <p>Greetings, one and all!</p>
+        <button onclick="closeDialog()">OK</button>
+    </dialog>
 {% endblock %}
 
 {% block scripts %}
-<script>
-    async function runQuery() {
-        const query = document.getElementById('query').value;
-        const resultsDiv = document.getElementById('results');
-        
-        try {
-            const response = await fetch('/query', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ query: query }),
-            });
-    
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-    
-            const data = await response.json();
-    
-            resultsDiv.innerHTML = '<h2>Results:</h2>';
-    
-            if (!Array.isArray(data)) {
-                throw new Error('Unexpected response format');
-            }
-    
-            if (data.length === 0) {
-                resultsDiv.innerHTML += '<p>No results found.</p>';
-                return;
-            }
-    
-            const table = document.createElement('table');
-            table.border = '1';
-            
-            // Create header row
-            const headerRow = table.insertRow();
-            for (const key in data[0]) {
-                const th = document.createElement('th');
-                th.textContent = key;
-                headerRow.appendChild(th);
-            }
-    
-            // Create data rows
-            data.forEach(item => {
-                const row = table.insertRow();
-                for (const key in item) {
-                    const cell = row.insertCell();
-                    cell.textContent = item[key];
-                }
-            });
-    
-            resultsDiv.appendChild(table);
-    
-        } catch (error) {
-            console.error('Error:', error);
-            resultsDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
-        }
-    }
-</script>
+<script src="{{ url_for('static', filename='index.js') }}"></script>
 {% endblock %}

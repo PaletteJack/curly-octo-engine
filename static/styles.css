@@ -9,7 +9,99 @@
 }
 
 body {
-    display: grid;
     height: 100dvh;
-    place-content: center;
+    width: 100%;
+    background-color: #F3F3F3;
+    display: grid;
+    justify-content: center;
+}
+
+main {
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
+    padding-top: 8rem;
+}
+
+header h1 {
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table td, table th {
+    border: 1px solid black;
+    padding: .5rem;
+}
+
+table tr:nth-child(even) {
+    background-color: #FFE0B0;
+}
+
+table tr:hover { background-color: #ddd;}
+
+table th {
+    text-align: left;
+    background-color: #FF8800;
+    position: sticky;
+    top: 0;
+}
+
+button {
+    border: 3px solid black;
+    text-transform: uppercase;
+    font-size: .9rem;
+    font-weight: bold;
+    padding: .5rem;
+    background-color: #FFE0B0;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #FF8800;
+    box-shadow: rgba(0, 0, 0, 255) 5px 5px 0px;
+    scale: 1.05;
+}
+
+dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: .8rem;
+    gap: 1rem;
+}
+
+dialog button {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+#query {
+    border: 3px solid black;
+    padding: .5rem;
+    box-shadow: rgba(0, 0, 0, 255) 5px 5px 0px;
+    margin-bottom: 1rem;
+    font-size: .85rem;
+    outline: none;
+    resize: none;
+}
+
+#results {
+    max-height: 500px;
+    width: 100%;
+    overflow: auto;
+    padding: 1rem;
+    padding-top: 0;
+    margin-top: 1rem;
+}
+
+.btn-group {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 1rem;
 }
