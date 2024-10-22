@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Find Schools{% endblock %}
+
+{% block header %}Find Nearby Schools{% endblock %}
+
+{% block content %}
+    <label for="lat">Latitude</label>
+    <br>
+    <input type="number" id="lat" name="lat">
+    <br>
+    <label for="long">Longitude</label>
+    <br>
+    <input type="number" id="long" name="long">
+    <br>
+    <label for="max_distance">Max Distance</label>
+    <br>
+    <input type="number" id="max_distance" name="max_distance">
+    <br>
+    <br>
+    <div class="btn-group">
+        <button onclick="findSchools()">Find schools</button>
+        <button onclick="exportSchools()">export schools</button>
+        {# <button onclick="openDialog()">SHOW HEADERS</button> #}
+    </div>
+    <div id="results"></div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='find-schools.js') }}"></script>
+{% endblock %}
