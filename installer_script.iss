@@ -1,6 +1,6 @@
 [Setup]
 AppName=Curly Octo Engine
-AppVersion=1.0
+AppVersion=0.1
 DefaultDirName={autopf}\CurlyOctoEngine
 DefaultGroupName=Curly Octo Engine
 OutputDir=installer

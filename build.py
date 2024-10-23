@@ -22,7 +22,7 @@ def build():
         'main.py',
         '--onefile',
         '--noconsole',
-        '--add-data', '../db.sqlite;.',
+        '--add-data', 'db.sqlite;.',
         '--add-data', 'styles.qss;.',
         '--icon', 'app_icon.ico',
         '--name', 'CurlyOctoEngine'

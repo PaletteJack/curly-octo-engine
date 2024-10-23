@@ -5,7 +5,7 @@ a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[('../db.sqlite', '.'), ('styles.qss', '.')],
+    datas=[('db.sqlite', '.'), ('styles.qss', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

@@ -5,6 +5,9 @@ venv/
 .env
 locals.py
 __pycache__
+build/
+dist/
+installer/
 desktop/build
 desktop/dist
 desktop/installer
